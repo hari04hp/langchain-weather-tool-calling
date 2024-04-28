@@ -1,5 +1,5 @@
 ## About
-A project that represents my ability to implement tool calling through LangChain agent. For establishing it, I have used open weather API and have created a chat interface where the LLM answers for the current weather and forecast upto 5 days for any city name or zipcode with country name in a natural language format. The functions to get weather using API are bound as tools to the GPT3.5 turbo LLM through LangChain.
+This portfolio project showcases my ability to implement tool calling through a LangChain agent. I used the OpenWeather API and created a chat interface where the GPT-3.5 turbo LLM answers natural language queries about current weather and 5-day forecasts for any city name or zip code with country name. The functions to get weather using API are bound as tools to the GPT3.5 turbo LLM through LangChain.
 
 ## How to run locally:
 1. pip install -r requirements.txt
