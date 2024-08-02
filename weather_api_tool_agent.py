@@ -174,7 +174,8 @@ if username and openai_api_key.startswith('sk-'):
         st.chat_message(avatars[msg.type]).write(msg.content)
 
     tools = [get_geo_data_from_city_or_zip, get_local_datetime,get_weather]
-    llm = ChatOpenAI(model="gpt-3.5-turbo-0125", streaming=True)
+    # llm = ChatOpenAI(model="gpt-3.5-turbo-0125", streaming=True)
+    llm = ChatOpenAI(model="gpt-4o-mini", streaming=True)
     llm_with_tools = llm.bind_tools(tools)
 
     #prompt should contain ("placeholder", "{agent_scratchpad}"), so I'm rewriting the prompt here
