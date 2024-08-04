@@ -4,7 +4,11 @@ from langchain_core.tools import tool
 import requests
 import streamlit as st
 import json
-import api_key #my local file
+# import api_key #my local file
+import os
+from dotenv import load_dotenv
+load_dotenv()
+OPEN_WEATHER_API_KEY = os.getenv('OPEN_WEATHER_API_KEY')
 import os
 from langchain.agents import create_tool_calling_agent, AgentExecutor, create_structured_chat_agent
 from langchain_openai import ChatOpenAI
@@ -40,10 +44,12 @@ def get_geo_data_from_city_or_zip(zip_code=None, country_name=None, city_name=No
         if city_name is None and zip_code is None:
             return "Need city name or zip code"
         if zip_code is not None:
-            url = f'http://api.openweathermap.org/geo/1.0/zip?zip={zip_code},{country_code}&appid={api_key.OPEN_WEATHER_API_KEY}'
+            # url = f'http://api.openweathermap.org/geo/1.0/zip?zip={zip_code},{country_code}&appid={api_key.OPEN_WEATHER_API_KEY}'
+            url = f'http://api.openweathermap.org/geo/1.0/zip?zip={zip_code},{country_code}&appid={OPEN_WEATHER_API_KEY}'
             geo_data = get_response(url)
         elif city_name is not None:
             url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{country_code}&limit=1&appid={api_key.OPEN_WEATHER_API_KEY}'
+            url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{country_code}&limit=1&appid={OPEN_WEATHER_API_KEY}'
             geo_data = get_response(url)[0]
         else:
             return "Wrong"
@@ -57,11 +63,13 @@ def get_weather(geo_data, is_forecast, local_requested_timestamp):
 
     try:
         if not is_forecast:
-            url = f'https://api.openweathermap.org/data/2.5/weather?lat={geo_data['lat']}&lon={geo_data['lon']}&appid={api_key.OPEN_WEATHER_API_KEY}&units=imperial'
+            # url = f'https://api.openweathermap.org/data/2.5/weather?lat={geo_data['lat']}&lon={geo_data['lon']}&appid={api_key.OPEN_WEATHER_API_KEY}&units=imperial'
+            url = f'https://api.openweathermap.org/data/2.5/weather?lat={geo_data['lat']}&lon={geo_data['lon']}&appid={OPEN_WEATHER_API_KEY}&units=imperial'
             data = get_response(url)
             return data
         else:
-            url = f'https://api.openweathermap.org/data/2.5/forecast?lat={geo_data['lat']}&lon={geo_data['lon']}&appid={api_key.OPEN_WEATHER_API_KEY}&units=imperial'
+            # url = f'https://api.openweathermap.org/data/2.5/forecast?lat={geo_data['lat']}&lon={geo_data['lon']}&appid={api_key.OPEN_WEATHER_API_KEY}&units=imperial'
+            url = f'https://api.openweathermap.org/data/2.5/forecast?lat={geo_data['lat']}&lon={geo_data['lon']}&appid={OPEN_WEATHER_API_KEY}&units=imperial'
             data = get_response(url)
             only_date_json = {}
             value = data["list"][0]["dt"]
