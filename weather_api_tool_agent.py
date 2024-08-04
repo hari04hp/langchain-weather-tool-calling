@@ -8,7 +8,7 @@ import json
 import os
 from dotenv import load_dotenv
 load_dotenv()
-OPEN_WEATHER_API_KEY = os.getenv('OPEN_WEATHER_API_KEY')
+OPEN_WEATHER_API_KEY = os.getenv("OPEN_WEATHER_API_KEY")
 import os
 from langchain.agents import create_tool_calling_agent, AgentExecutor, create_structured_chat_agent
 from langchain_openai import ChatOpenAI
@@ -48,7 +48,7 @@ def get_geo_data_from_city_or_zip(zip_code=None, country_name=None, city_name=No
             url = f'http://api.openweathermap.org/geo/1.0/zip?zip={zip_code},{country_code}&appid={OPEN_WEATHER_API_KEY}'
             geo_data = get_response(url)
         elif city_name is not None:
-            url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{country_code}&limit=1&appid={api_key.OPEN_WEATHER_API_KEY}'
+            url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{country_code}&limit=1&appid={OPEN_WEATHER_API_KEY}'
             url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{country_code}&limit=1&appid={OPEN_WEATHER_API_KEY}'
             geo_data = get_response(url)[0]
         else:
