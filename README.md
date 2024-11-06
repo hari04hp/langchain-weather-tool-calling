@@ -1,5 +1,5 @@
 ## About
-Published at https://haripriya-rajendran-weather-agent.streamlit.app/
+Published at https://haripriya-rajendran-weather-agent.streamlit.app/.
 This portfolio project showcases my ability to implement tool calling through a LangChain agent. I used the OpenWeather API and created a chat interface where the GPT-4o-mini LLM answers natural language queries about current weather and 5-day forecasts for any city name or zip code with country name. The functions to get weather using API are bound as tools to the GPT-4o-mini LLM through LangChain. 
 
 ## How to run locally:
